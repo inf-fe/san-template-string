@@ -1,0 +1,21 @@
+{
+	"scopeName": "san-inject",
+	"injectionSelector": "L:comment.line.double-slash,L:source.js -comment -string",
+	"patterns": [
+		{
+			"begin": "(?i)(\\s?\\/\\*\\s?(san)\\s?\\*\\/\\s?)(`)",
+			"beginCaptures": {
+				"1": {
+					"name": "comment.block"
+				}
+			},
+			"end": "(`)",
+			"name": "meta.embedded.block.san",
+			"patterns": [
+				{
+					"include": "source.san"
+				}
+			]
+		}
+	]
+}

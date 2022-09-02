@@ -1,0 +1,422 @@
+{
+    "name": "San",
+    "scopeName": "source.san",
+    "patterns": [
+        {
+            "include": "#html-stuff"
+        }
+    ],
+    "repository": {
+        "self-closing-tag": {
+            "begin": "(<)([a-zA-Z0-9:-]+)(?=([^>]+/>))",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.html.san"
+                },
+                "2": {
+                    "name": "entity.name.tag.$2.html.san"
+                }
+            },
+            "end": "(/>)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.end.html.san"
+                }
+            },
+            "name": "self-closing-tag",
+            "patterns": [
+                {
+                    "include": "#tag-stuff"
+                }
+            ]
+        },
+        "template-tag": {
+            "patterns": [
+                {
+                    "include": "#template-tag-1"
+                },
+                {
+                    "include": "#template-tag-2"
+                }
+            ]
+        },
+        "template-tag-1": {
+            "begin": "(<)(template)\\b(>)",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.html.san"
+                },
+                "2": {
+                    "name": "entity.name.tag.$2.html.san"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.html.san"
+                }
+            },
+            "end": "(/?>)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.end.html.san"
+                }
+            },
+            "name": "meta.template-tag.start",
+            "patterns": [
+                {
+                    "begin": "\\G",
+                    "end": "(?=/>)|((</)(template)\\b)",
+                    "endCaptures": {
+                        "2": {
+                            "name": "punctuation.definition.tag.begin.html.san"
+                        },
+                        "3": {
+                            "name": "entity.name.tag.$3.html.san"
+                        }
+                    },
+                    "name": "meta.template-tag.end",
+                    "patterns": [
+                        {
+                            "include": "#html-stuff"
+                        }
+                    ]
+                }
+            ]
+        },
+        "template-tag-2": {
+            "begin": "(<)(template)\\b",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.html.san"
+                },
+                "2": {
+                    "name": "entity.name.tag.$2.html.san"
+                }
+            },
+            "end": "(/?>)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.end.html.san"
+                }
+            },
+            "name": "meta.template-tag.start",
+            "patterns": [
+                {
+                    "begin": "\\G",
+                    "end": "(?=/>)|((</)(template)\\b)",
+                    "endCaptures": {
+                        "2": {
+                            "name": "punctuation.definition.tag.begin.html.san"
+                        },
+                        "3": {
+                            "name": "entity.name.tag.$3.html.san"
+                        }
+                    },
+                    "name": "meta.template-tag.end",
+                    "patterns": [
+                        {
+                            "include": "#tag-stuff"
+                        },
+                        {
+                            "include": "#html-stuff"
+                        }
+                    ]
+                }
+            ]
+        },
+        "html-stuff": {
+            "patterns": [
+                {
+                    "include": "#template-tag"
+                },
+                {
+                    "include": "text.html.derivative"
+                },
+                {
+                    "include": "text.html.basic"
+                }
+            ]
+        },
+        "tag-stuff": {
+            "begin": "\\G",
+            "end": "(?=/>)|(>)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.end.html.san"
+                }
+            },
+            "name": "meta.tag-stuff",
+            "patterns": [
+                {
+                    "include": "#san-directives"
+                },
+                {
+                    "include": "text.html.basic#attribute"
+                }
+            ]
+        },
+        "san-directives": {
+            "patterns": [
+                {
+                    "include": "#san-directives-control"
+                },
+                {
+                    "include": "#san-directives-style-attr"
+                },
+                {
+                    "include": "#san-directives-original"
+                }
+            ]
+        },
+        "san-directives-original": {
+            "begin": "(?:\\b(s-)|(:|@|#))(\\[?)([\\w\\-]*)(\\]?)(?:\\.([\\w\\-]*))*",
+            "beginCaptures": {
+                "1": {
+                    "name": "entity.other.attribute-name.html.san"
+                },
+                "2": {
+                    "name": "punctuation.separator.key-value.html.san"
+                },
+                "3": {
+                    "name": "punctuation.separator.key-value.html.san"
+                },
+                "4": {
+                    "name": "entity.other.attribute-name.html.san"
+                },
+                "5": {
+                    "name": "punctuation.separator.key-value.html.san"
+                },
+                "6": {
+                    "name": "entity.other.attribute-name.html.san"
+                },
+                "7": {
+                    "name": "punctuation.separator.key-value.html.san"
+                }
+            },
+            "end": "(?=\\s*+[^=\\s])",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.string.end.html.san"
+                }
+            },
+            "name": "meta.attribute.directive.san",
+            "patterns": [
+                {
+                    "include": "#san-directives-expression"
+                }
+            ]
+        },
+        "san-directives-control": {
+            "begin": "(s-for)|(s-if|s-else-if|s-elif|s-else)",
+            "captures": {
+                "0": {
+                    "name": "keyword.control.loop.san"
+                },
+                "1": {
+                    "name": "keyword.control.conditional.san"
+                }
+            },
+            "end": "(?=\\s*+[^=\\s])",
+            "name": "meta.attribute.directive.control.san",
+            "patterns": [
+                {
+                    "include": "#san-directives-expression"
+                }
+            ]
+        },
+        "san-directives-expression": {
+            "patterns": [
+                {
+                    "begin": "(=)\\s*('|\"|`)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.separator.key-value.html.san"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.string.begin.html.san"
+                        }
+                    },
+                    "end": "(\\2)",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.string.end.html.san"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(?<=('|\"|`))",
+                            "end": "(?=\\1)",
+                            "name": "source.ts.embedded.html.san",
+                            "patterns": [
+                                {
+                                    "include": "source.ts"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "(=)\\s*(?=[^'\"`])",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.separator.key-value.html.san"
+                        }
+                    },
+                    "end": "(?=(\\s|>|\\/>))",
+                    "patterns": [
+                        {
+                            "begin": "(?=[^'\"`])",
+                            "end": "(?=(\\s|>|\\/>))",
+                            "name": "source.ts.embedded.html.san",
+                            "patterns": [
+                                {
+                                    "include": "source.ts"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "san-directives-style-attr": {
+            "begin": "\\b(style)\\s*(=)",
+            "captures": {
+                "1": {
+                    "name": "entity.other.attribute-name.html.san"
+                },
+                "2": {
+                    "name": "punctuation.separator.key-value.html.san"
+                }
+            },
+            "end": "(?<='|\")",
+            "name": "meta.attribute.style.san",
+            "patterns": [
+                {
+                    "comment": "Copy from source.css#rule-list-innards",
+                    "begin": "('|\")",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.string.begin.html.san"
+                        }
+                    },
+                    "end": "(\\1)",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.string.end.html.san"
+                        }
+                    },
+                    "name": "source.css.embedded.html.san",
+                    "patterns": [
+                        {
+                            "include": "source.css#comment-block"
+                        },
+                        {
+                            "include": "source.css#escapes"
+                        },
+                        {
+                            "include": "source.css#font-features"
+                        },
+                        {
+                            "match": "(?x) (?<![\\w-])\n--\n(?:[-a-zA-Z_]    | [^\\x00-\\x7F])     # First letter\n(?:[-a-zA-Z0-9_] | [^\\x00-\\x7F]      # Remainder of identifier\n  |\\\\(?:[0-9a-fA-F]{1,6}|.)\n)*",
+                            "name": "variable.css"
+                        },
+                        {
+                            "begin": "(?<![-a-zA-Z])(?=[-a-zA-Z])",
+                            "end": "$|(?![-a-zA-Z])",
+                            "name": "meta.property-name.css",
+                            "patterns": [
+                                {
+                                    "include": "source.css#property-names"
+                                }
+                            ]
+                        },
+                        {
+                            "comment": "Modify end to fix #199. TODO: handle ' character.",
+                            "begin": "(:)\\s*",
+                            "beginCaptures": {
+                                "1": {
+                                    "name": "punctuation.separator.key-value.css"
+                                }
+                            },
+                            "end": "\\s*(;)|\\s*(?='|\")",
+                            "endCaptures": {
+                                "1": {
+                                    "name": "punctuation.terminator.rule.css"
+                                }
+                            },
+                            "contentName": "meta.property-value.css",
+                            "patterns": [
+                                {
+                                    "include": "source.css#comment-block"
+                                },
+                                {
+                                    "include": "source.css#property-values"
+                                }
+                            ]
+                        },
+                        {
+                            "match": ";",
+                            "name": "punctuation.terminator.rule.css"
+                        }
+                    ]
+                }
+            ]
+        },
+        "san-interpolations": {
+            "patterns": [
+                {
+                    "begin": "\\{\\{",
+                    "beginCaptures": [
+                        {
+                            "name": "punctuation.definition.tag.begin.html.san"
+                        }
+                    ],
+                    "end": "\\}\\}",
+                    "endCaptures": [
+                        {
+                            "name": "punctuation.definition.tag.end.html.san"
+                        }
+                    ],
+                    "name": "expression.embbeded.san",
+                    "patterns": [
+                        {
+                            "begin": "\\G",
+                            "end": "(?=\\}\\})",
+                            "name": "source.ts.embedded.html.san",
+                            "patterns": [
+                                {
+                                    "include": "source.ts"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\{\\=",
+                    "beginCaptures": [
+                        {
+                            "name": "punctuation.definition.tag.begin.html.san"
+                        }
+                    ],
+                    "end": "\\=\\}",
+                    "endCaptures": [
+                        {
+                            "name": "punctuation.definition.tag.end.html.san"
+                        }
+                    ],
+                    "name": "expression.embbeded.san",
+                    "patterns": [
+                        {
+                            "begin": "\\G",
+                            "end": "(?=\\=\\})",
+                            "name": "source.ts.embedded.html.san",
+                            "patterns": [
+                                {
+                                    "include": "source.ts"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

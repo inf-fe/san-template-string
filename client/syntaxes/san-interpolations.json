@@ -1,0 +1,10 @@
+{
+	"fileTypes": [],
+	"injectionSelector": "L:source.js,L:source.san",
+	"patterns": [
+		{
+			"include": "source.san#san-interpolations"
+		}
+	],
+	"scopeName": "san.interpolations"
+}

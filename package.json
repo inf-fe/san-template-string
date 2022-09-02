@@ -1,0 +1,124 @@
+{
+	"name": "san-template-string",
+	"description": "San template strings syntax highlighting in javascript strings",
+	"author": "MBear",
+	"license": "MIT",
+	"version": "1.0.0",
+	"repository": {
+		"url": "https://github.com/inf-fe/san-template-string.git"
+	},
+	"publisher": "MBear",
+	"icon": "docs/logo.png",
+	"categories": [],
+	"keywords": [
+		"san",
+		"san-template",
+		"string"
+	],
+	"engines": {
+		"vscode": "^1.63.0"
+	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"main": "./client/out/extension",
+	"contributes": {
+		"languages": [
+			{
+				"id": "san"
+			},
+			{
+				"id": "san-directives"
+			},
+			{
+				"id": "san-interpolations"
+			}
+		],
+		"grammars": [
+			{
+				"language": "san",
+				"scopeName": "source.san",
+				"path": "./client/syntaxes/san.tmLanguage.json",
+				"embeddedLanguages": {
+					"source.san": "san",
+					"text": "plaintext",
+					"text.html.derivative": "html",
+					"text.html.markdown": "markdown",
+					"source.css": "css",
+					"source.css.scss": "scss",
+					"source.css.less": "less",
+					"source.sass": "sass",
+					"source.stylus": "stylus",
+					"source.postcss": "postcss",
+					"source.js": "javascript",
+					"source.ts": "typescript",
+					"source.js.jsx": "javascriptreact",
+					"source.tsx": "typescriptreact",
+					"source.json": "json",
+					"source.json.comments": "jsonc",
+					"source.yaml": "yaml",
+					"source.toml": "toml",
+					"source.graphql": "graphql"
+				},
+				"unbalancedBracketScopes": [
+					"keyword.operator.relational",
+					"storage.type.function.arrow",
+					"keyword.operator.bitwise.shift",
+					"meta.brace.angle",
+					"punctuation.definition.tag"
+				]
+			},
+			{
+				"language": "san-directives",
+				"scopeName": "san.directives",
+				"path": "./client/syntaxes/san-directives.json",
+				"injectTo": [
+					"source.san",
+					"text.html.markdown",
+					"text.html.derivative",
+					"text.pug",
+					"source.js"
+				]
+			},
+			{
+				"language": "san-interpolations",
+				"scopeName": "san.interpolations",
+				"path": "./client/syntaxes/san-interpolations.json",
+				"injectTo": [
+					"source.san",
+					"text.html.markdown",
+					"text.html.derivative",
+					"text.pug",
+					"source.js"
+				]
+			},
+			{
+				"scopeName": "san-inject",
+				"path": "./client/syntaxes/san-inject.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.san": "san"
+				},
+				"injectTo": [
+					"source.js"
+				]
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -b",
+		"watch": "tsc -b -w",
+		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+		"test": "sh ./scripts/e2e.sh"
+	},
+	"devDependencies": {
+		"@types/mocha": "^9.1.0",
+		"@types/node": "^16.11.7",
+		"@typescript-eslint/eslint-plugin": "^5.30.0",
+		"@typescript-eslint/parser": "^5.30.0",
+		"eslint": "^8.13.0",
+		"mocha": "^9.2.1",
+		"typescript": "^4.7.2"
+	}
+}
