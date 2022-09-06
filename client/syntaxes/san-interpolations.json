@@ -1,6 +1,6 @@
 {
 	"fileTypes": [],
-	"injectionSelector": "L:source.js,L:source.san",
+	"injectionSelector": "L:comment.line.double-slash,L:source.js -comment -string,L:source.san",
 	"patterns": [
 		{
 			"include": "source.san#san-interpolations"

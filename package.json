@@ -28,7 +28,10 @@
 	"contributes": {
 		"languages": [
 			{
-				"id": "san"
+				"id": "san",
+				"extensions": [
+					".san"
+				]
 			},
 			{
 				"id": "san-directives"
@@ -99,11 +102,42 @@
 				"scopeName": "san-inject",
 				"path": "./client/syntaxes/san-inject.json",
 				"embeddedLanguages": {
-					"meta.embedded.block.san": "san"
+					"meta.embedded.block.san": "san",
+					"source.san": "san"
 				},
 				"injectTo": [
 					"source.js"
 				]
+			},
+			{
+				"scopeName": "markdown.san.codeblock",
+				"path": "./client/syntaxes/san-inject-md.json",
+				"injectTo": [
+					"text.html.markdown"
+				],
+				"embeddedLanguages": {
+					"meta.embedded.block.san": "san",
+					"source.san": "san",
+					"text": "plaintext",
+					"text.html.derivative": "html",
+					"text.html.markdown": "markdown",
+					"text.pug": "jade",
+					"source.css": "css",
+					"source.css.scss": "scss",
+					"source.css.less": "less",
+					"source.sass": "sass",
+					"source.stylus": "stylus",
+					"source.postcss": "postcss",
+					"source.js": "javascript",
+					"source.ts": "typescript",
+					"source.js.jsx": "javascriptreact",
+					"source.tsx": "typescriptreact",
+					"source.json": "json",
+					"source.json.comments": "jsonc",
+					"source.yaml": "yaml",
+					"source.toml": "toml",
+					"source.graphql": "graphql"
+				}
 			}
 		]
 	},
