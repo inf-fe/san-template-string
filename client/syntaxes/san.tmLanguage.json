@@ -167,7 +167,7 @@
             ]
         },
         "san-directives-original": {
-            "begin": "(?:\\b(s-)|(:|@|#))(\\[?)([\\w\\-]*)(\\]?)(?:\\.([\\w\\-]*))*",
+            "begin": "(?:\\b(s-|on-)|(:|@|#))(\\[?)([\\w\\-]*)(\\]?)(?:\\.([\\w\\-]*))*",
             "beginCaptures": {
                 "1": {
                     "name": "entity.other.attribute-name.html.san"
@@ -380,33 +380,6 @@
                         {
                             "begin": "\\G",
                             "end": "(?=\\}\\})",
-                            "name": "source.ts.embedded.html.san",
-                            "patterns": [
-                                {
-                                    "include": "source.ts"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "begin": "\\{\\=",
-                    "beginCaptures": [
-                        {
-                            "name": "punctuation.definition.tag.begin.html.san"
-                        }
-                    ],
-                    "end": "\\=\\}",
-                    "endCaptures": [
-                        {
-                            "name": "punctuation.definition.tag.end.html.san"
-                        }
-                    ],
-                    "name": "expression.embbeded.san",
-                    "patterns": [
-                        {
-                            "begin": "\\G",
-                            "end": "(?=\\=\\})",
                             "name": "source.ts.embedded.html.san",
                             "patterns": [
                                 {

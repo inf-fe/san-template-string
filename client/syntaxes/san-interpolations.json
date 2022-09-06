@@ -1,9 +1,47 @@
 {
 	"fileTypes": [],
-	"injectionSelector": "L:comment.line.double-slash,L:source.js -comment -string,L:source.san",
+	"injectionSelector": "L:source.js -comment -string, L:source.san, L:meta.attribute",
 	"patterns": [
 		{
 			"include": "source.san#san-interpolations"
+		},
+		{
+			"begin": "(\")({=)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.string.begin.html.san"
+				},
+				"2": {
+					"name": "punctuation.definition.tag.begin.html.san"
+				}
+			},
+			"end": "(=})(\")",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.tag.end.html.san"
+				},
+				"2": {
+					"name": "punctuation.definition.string.end.html.san"
+				}
+			},
+			"name": "source.ts.embedded.html.san",
+			"patterns": [
+				{
+					"include": "source.ts"
+				}
+			]
+		},
+		{
+			"match": "trackBy",
+			"name": "keyword.operator.expression.in.ts"
+		},
+		{
+			"match":"capture:",
+			"name": "keyword.operator.expression.in.ts"
+		},
+		{
+			"match":"native:",
+			"name": "keyword.operator.expression.in.ts"
 		}
 	],
 	"scopeName": "san.interpolations"
