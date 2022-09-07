@@ -1,6 +1,6 @@
 {
 	"fileTypes": [],
-	"injectionSelector": "L:meta.embedded.block.san, L:meta.element -meta.attribute",
+	"injectionSelector": "L:meta.embedded.block.san -meta.attribute -attribute_value, L:meta.element -meta.attribute",
 	"patterns": [
 		{
 			"include": "source.san#san-directives"
