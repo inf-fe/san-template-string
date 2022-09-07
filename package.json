@@ -4,7 +4,7 @@
 	"description": "San template strings syntax highlighting in javascript strings",
 	"author": "MBear",
 	"license": "MIT",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"repository": {
 		"url": "https://github.com/inf-fe/san-template-string.git"
 	},
