@@ -167,7 +167,7 @@
             ]
         },
         "san-directives-original": {
-            "begin": "(?:\\b(s-|on-|var-)|(:|@|#))(\\[?)([\\w\\-]*)(\\]?)(?:\\.([\\w\\-]*))*",
+            "begin": "(?:\\b(s-|on-|var-)(?!ref)|(:|@|#))(\\[?)([\\w\\-]*)(\\]?)(?:\\.([\\w\\-]*))*",
             "beginCaptures": {
                 "1": {
                     "name": "entity.other.attribute-name.html.san"
