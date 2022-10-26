@@ -84,7 +84,8 @@
 					"text.html.markdown",
 					"text.html.derivative",
 					"text.pug",
-					"source.js"
+					"source.js",
+					"source.ts"
 				]
 			},
 			{
@@ -96,7 +97,8 @@
 					"text.html.markdown",
 					"text.html.derivative",
 					"text.pug",
-					"source.js"
+					"source.js",
+					"source.ts"
 				]
 			},
 			{
@@ -107,7 +109,8 @@
 					"source.san": "san"
 				},
 				"injectTo": [
-					"source.js"
+					"source.js",
+					"source.ts"
 				]
 			},
 			{

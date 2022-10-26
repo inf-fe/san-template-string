@@ -1,6 +1,6 @@
 {
 	"scopeName": "san-inject",
-	"injectionSelector": "L:comment.line.double-slash,L:source.js -comment -string",
+	"injectionSelector": "L:comment.line.double-slash,L:source.js -comment -string,L:source.ts -comment -string",
 	"patterns": [
 		{
 			"begin": "(?i)(\\s?\\/\\*\\s?(san)\\s?\\*\\/\\s?)(`)",
